@@ -21,8 +21,8 @@ def homePage(request):
     myFilter=search(request)
     disc = Product.objects.filter(prod_discount__lt=20)
     spec = Product.objects.filter(prod_discount__gt=20)
-    product=Product.objects.all().exclude(twenty_percent_discount=True)
-    product = product.order_by('-date')
+    produ=Product.objects.all().exclude(twenty_percent_discount=True)
+    product = produ.order_by('-date')
     context = {'spec':spec,'disc':disc,'amt':amt,'product':product,'myFilter':myFilter,'genres':genres,'aggregate':aggregate,'twenty':twenty}
     return render(request, 'index.html', context)
 
