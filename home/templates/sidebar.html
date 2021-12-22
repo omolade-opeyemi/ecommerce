@@ -1,0 +1,51 @@
+{% load static %}
+
+<a href=""></a>
+<div id="sidebar" class="span3">
+  {%if request.user.is_authenticated %}
+  <div class="well well-small"><a id="myCart" href="{%url 'summary'%}"><img
+        src="{% static 'themes/images/ico-cart.png' %}" alt="cart">{{amt}} Items in your cart <span
+        class="badge badge-warning pull-right">${{aggregate}}</span></a></div>
+  {%else%}
+  <div class="well well-small"><a id="myCart" href="{%url 'summary'%}"><img
+    src="{% static 'themes/images/ico-cart.png' %}" alt="cart">0 Items in your cart <span
+    class="badge badge-warning pull-right">$ 0</span></a></div>
+  {%endif%}
+
+  <ul id="sideManu" class="nav nav-tabs nav-stacked">
+    {% load mptt_tags %}
+    {% recursetree genres %}
+    <li {% if not node.is_leaf_node %} class="subMenu" {% endif %}>
+      <a  href="{%url 'category' pk=node.id %}" >{{node.name}} [230]</a>
+      {% if not node.is_leaf_node %}
+
+      <ul style="display:none" class="childen">
+        <li><a class="active" href="#">{{children}}</a></li>
+      </ul>
+<strong></strong>
+      {% endif %}
+    </li>
+    {% endrecursetree %}
+  </ul>
+  <br />
+  <h5 style="text-align:center">Special Discount</h5>
+  {%for p in spec %}
+  <div class="thumbnail">
+    <img src="{{p.prod_img1.url}}" title="Bootshop New Kindel" alt="special offer">
+    <div class="caption">
+      <h5>{{p.prod_name}}</h5>
+      <h5><strong>Discount : % {{p.prod_discount}}</strong></h5>
+      <h4 style="text-align:center"><a class="btn" href="{%url 'detail' pk=p.id%}"> <i class="icon-zoom-in"></i></a> <a
+          class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary"
+          href="#">${{p.prod_price}}</a></h4>
+    </div>
+  </div>
+  <br />
+  {%endfor%}
+  <div class="thumbnail">
+    <img src="{% static 'themes/images/payment_methods.png' %}" title="Bootshop Payment Methods" alt="Payments Methods">
+    <div class="caption">
+      <h5>Payment Methods</h5>
+    </div>
+  </div>
+</div>

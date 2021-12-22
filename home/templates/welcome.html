@@ -1,0 +1,17 @@
+{% load static %}
+{%if request.user.is_authenticated %}
+<div id="welcomeLine" class="row">
+	<div class="span6">Welcome!<strong> {{request.user}}</strong></div>
+	<div class="span6">
+	<div class="pull-right">
+		<a href="{%url 'summary'%}"><span class="">Fr</span></a>
+		<a href="{%url 'summary'%}"><span class="">Es</span></a>
+		<span class="btn btn-mini">En</span>
+		<a href="{%url 'summary'%}"><span>&pound;</span></a>
+		<span class="btn btn-mini">$ {{aggregate}}</span>
+		<a href="{%url 'summary'%}"><span class="">$</span></a>
+		<a href="{%url 'summary'%}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ {{amt}} ] Itemes in your cart </span> </a> 
+	</div>
+	</div>
+</div>
+{%endif%}
