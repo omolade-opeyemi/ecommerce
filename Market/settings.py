@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-sv9me5xe4$@al28wwp0z-eh02q=d)+%44pci&s+dfo+lgm6qh)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['opeyemi-ecommerce.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -143,6 +143,7 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS= [os.path.join(BASE_DIR, 'static'),]
 MEDIA_URL = '/media/'
